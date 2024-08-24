@@ -16,12 +16,13 @@ function handleChange(evt) {
     setDisable(checkPassword());
     setFormState(currForm); 
 
+//field validation
     setErrorState({
         ...errorState, [evt.target.name]: evt.target.value === ""
     })
 };
 
-
+//check password & confirm password are the same
 function checkPassword() {
     var currForm = formState;
     if (!currForm.password) {
@@ -41,6 +42,7 @@ function checkPassword() {
 function hashPassword() {
     var currForm = formState;
     if (currForm.password) {
+        //console.log(currForm.password)
         var hash = hashData(currForm.password);
         currForm.password = hash.hash; 
         currForm.salt = hash.salt; 
@@ -59,10 +61,11 @@ async function handleSubmit(evt) {
         const user = await signUp(formData);
         console.log(user);
         
-        window.location.href = "/";
+        window.location.href = "/signin";
     } catch (error) {
         console.log(error)
     }
+    console.log('Form submitted'); // Log form submission
 }
 
 
@@ -76,18 +79,18 @@ return (
         <form onSubmit={handleSubmit}>
             <div>
                 <div>
-                    <label>Email</label>
+                    <label htmlFor="email" className="form-label">Email</label>
                     <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    className={`input ${errorState.lastName ? "input-error" : ""}`}
+                    type="email"
+                    id="email"
+                    name="email"
+                    className={`input ${errorState.email ? "input-error" : ""}`}
                     onChange={handleChange}
                     />
                 </div>
 
                 <div>
-                    <label>Password</label>
+                    <label htmlFor="password" className="form-label">Password</label>
                     <input 
                     type="password"
                     id="password"
@@ -98,7 +101,7 @@ return (
                 </div>
 
                 <div>
-                    <label>Confirm Password</label>
+                    <label htmlFor="confirm" className="form-label">Confirm Password</label>
                     <input 
                     type="password"
                     id="confirm"
@@ -110,9 +113,17 @@ return (
 
             </div>
 
-            <button type="submit" disabled={disable}>
+            <button type="submit" disabled={false}>
             Sign Up
             </button>
+
+            <p>
+            Already have an account?{" "}
+            <a href="/signin" style={{ color: "blue" }}>
+            Sign in
+            </a>
+            .
+            </p>
 
         </form>
     </div>

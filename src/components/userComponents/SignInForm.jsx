@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { Link } from '@chakra-ui/react'; 
+import { Link } from "react-router-dom"; 
 import Logo from '../../assets/logo-placeholder.png'
+
+import { hashDataWithSaltRounds, storeToken } from "../../util/security";
+import { getSignInDetails, signInUser } from "../../service/users";
+
 
 function SignInForm() {
     const [email, setEmail] = useState(''); 
@@ -25,18 +29,28 @@ function SignInForm() {
                 signInDetails.iterations
             );
             formData.password = hashedPassword;
-        } catch (error) {
-            console.log(error)
+            console.log(formData)
+
+            const token = await signInUser(formData)
+            storeToken(token)
+
+            //redirect to home once user is logged in
+            window.location.href = `/home`;
+
+
+            } catch (error) {
+                console.log(error)
         }
     }
 
     return (
         <div>
-            <Link to="/">
+            <Link to="/signup">
             <img src={Logo} alt="Logo" className="logo" />
             </Link>
             <h2>Sign In</h2>
-            <form>
+
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="email" className="form-label">Email</label>
                 <input
                 type="email"
@@ -48,7 +62,8 @@ function SignInForm() {
                 setEmailError("");
                 }}
                 />
-            {emailError && <div className="error">{emailError}</div>}
+
+                {emailError && <div className="error">{emailError}</div>}
 
                 <label htmlFor="password" className="form-label">Password</label>
                 <input
@@ -57,11 +72,12 @@ function SignInForm() {
                 className={`input ${passwordError ? "input-error" : ""}`}
                 value={password}
                 onChange={(e) => {
-                setPassword(e.target.value);
-                setPasswordError("");
+                    setPassword(e.target.value);
+                    setPasswordError("");
                 }}
                 />
-            {passwordError && <div className="error">{passwordError}</div>}
+
+                {passwordError && <div className="error">{passwordError}</div>}
 
             <p>Don&apos;t have an account? {" "}
                 <a href="/signup" style={{ color: "blue" }}>
