@@ -1,0 +1,140 @@
+{"sites": [
+  {
+    "category": "Natural",
+    "criteria_txt": "(ix)",
+    "danger": "",
+    "date_inscribed": "2007",
+    "extension": 0,
+    "http_url": "https://whc.unesco.org/en/list/1133",
+    "id_number": 1133,
+    "image_url": "https://whc.unesco.org/uploads/sites/site_1133.jpg",
+    "iso_code": [
+      "al",
+      "at",
+      "be",
+      "ba",
+      "bg",
+      "hr",
+      "cz",
+      "fr",
+      "de",
+      "it",
+      "pl",
+      "ro",
+      "sk",
+      "si",
+      "es",
+      "ch",
+      "mk",
+      "ua"
+    ],
+    "justification": "",
+    "latitude": 48.9,
+    "longitude": 22.1833333333,
+    "location": "",
+    "region": "Europe and North America",
+    "revision": 0,
+    "secondary_dates": [
+      "2011",
+      "2017",
+      "2021"
+    ],
+    "short_description": "This transnational property includes 93 component parts in 18 countries. Since the end of the last Ice Age, European Beech spread from a few isolated refuge areas in the Alps, Carpathians, Dinarides, Mediterranean and Pyrenees over a short period of a few thousand years in a process that is still ongoing. The successful expansion across a whole continent is related to the tree’s adaptability and tolerance of different climatic, geographical and physical conditions.</p>",
+    "site": "Ancient and Primeval Beech Forests of the Carpathians and Other Regions of Europe",
+    "states": [
+      "Albania",
+      "Austria",
+      "Belgium",
+      "Bosnia and Herzegovina",
+      "Bulgaria",
+      "Croatia",
+      "Czechia",
+      "France",
+      "Germany",
+      "Italy",
+      "Poland",
+      "Romania",
+      "Slovakia",
+      "Slovenia",
+      "Spain",
+      "Switzerland",
+      "North Macedonia",
+      "Ukraine"
+    ],
+    "transboundary": true,
+    "unique_number": 2513
+  },
+  {
+    "category": "Mixed",
+    "criteria_txt": "(i)(iii)(iv)(vii)",
+    "danger": "",
+    "date_inscribed": "1979",
+    "extension": 1,
+    "http_url": "https://whc.unesco.org/en/list/99",
+    "id_number": 99,
+    "image_url": "https://whc.unesco.org/uploads/sites/site_99.jpg",
+    "iso_code": [
+      "al",
+      "mk"
+    ],
+    "justification": "",
+    "latitude": 40.9918333333,
+    "longitude": 20.7041666667,
+    "location": "Ohrid (municipality)",
+    "region": "Europe and North America",
+    "revision": 0,
+    "secondary_dates": [
+      "2019",
+      "1980"
+    ],
+    "short_description": "A superlative natural phenomenon, Lake Ohrid provides a refuge for numerous endemic species of freshwater fauna and flora dating from the Tertiary period. Situated on the shores of the lake, the town of Ohrid is one of the oldest human settlements in Europe. Built mainly between the 7th and 19th centuries, it has the oldest Slav monastery (St Pantelejmon) and more than 800 Byzantine-style icons dating from the 11th to the end of the 14th century. In the shallow waters near the shores of the lake, three sites testify to the presence of prehistoric pile dwellings, and the small Lin Peninsula is the site of the remains of an Early Christian church founded in the middle of the 6th century.</p>",
+    "site": "Natural and Cultural Heritage of the Ohrid region",
+    "states": [
+      "Albania",
+      "North Macedonia"
+    ],
+    "transboundary": true,
+    "unique_number": 2313
+  },
+  {
+    "category": "Cultural",
+    "criteria_txt": "(i)(ii)(vi)",
+    "danger": "",
+    "date_inscribed": "2016",
+    "extension": 0,
+    "http_url": "https://whc.unesco.org/en/list/1321",
+    "id_number": 1321,
+    "image_url": "https://whc.unesco.org/uploads/sites/site_1321.jpg",
+    "iso_code": [
+      "ar",
+      "be",
+      "fr",
+      "de",
+      "in",
+      "jp",
+      "ch"
+    ],
+    "justification": "",
+    "latitude": 46.4684138889,
+    "longitude": 6.8293361111,
+    "location": "",
+    "region": "Latin America and the Caribbean",
+    "revision": 0,
+    "secondary_dates": [
+      ""
+    ],
+    "short_description": "Chosen from the work of Le Corbusier, the 17 sites comprising this transnational serial property are spread over seven countries and are a testimonial to the invention of a new architectural language that made a break with the past. They were built over a period of a half-century, in the course of what Le Corbusier described as “patient research”. The Complexe du Capitole in Chandigarh (India), the National Museum of Western Art, Tokyo (Japan), the House of Dr Curutchet in La Plata (Argentina) and the Unité d’habitation in Marseille (France) reflect the solutions that the Modern Movement sought to apply during the 20th century to the challenges of inventing new architectural techniques to respond to the needs of society. These masterpieces of creative genius also attest to the internationalization of architectural practice across the planet.</p>",
+    "site": "The Architectural Work of Le Corbusier, an Outstanding Contribution to the Modern Movement",
+    "states": [
+      "Argentina",
+      "Belgium",
+      "France",
+      "Germany",
+      "India",
+      "Japan",
+      "Switzerland"
+    ],
+    "transboundary": true,
+    "unique_number": 2085
+  }]
+}
