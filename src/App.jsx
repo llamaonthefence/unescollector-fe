@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { theme } from '@chakra-ui/react'
 
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import HomePage from './pages/HomePage';
-import MapPage from './pages/MapPage';
+import MapPage from './pages/MapPage'
 import SitePage from './pages/SitePage';
 import AdventurePage from './pages/AdventurePage';
 import UserPage from './pages/UserPage';

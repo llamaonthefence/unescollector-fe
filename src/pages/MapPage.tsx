@@ -1,7 +1,9 @@
-// import React from 'react';
+import React from 'react';
 import { Box } from '@chakra-ui/react'
 import MapComponent from '../components/mapComponents/mapComponent';
-// import { Site } from '../components/mapComponents/mapComponent'
+import { Site } from '../components/mapComponents/mapComponent'
+import { useEffect, useState } from 'react';
+// import '../constants/whc-en.json'
 
 //sites dummy data
 const sites = [
@@ -10,7 +12,10 @@ const sites = [
     // Add more sites as needed
   ];
 
-const MapPage = () => {
+
+const MapPage: React.FC = () => {
+
+    const [sites, setSites] = useState<Site[]>([]);
 
     return (
         <Box display="flex" flexDirection="column" height="100vh">

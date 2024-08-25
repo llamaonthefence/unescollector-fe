@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './mapComponent.css'
+// import '../mapComponents/mapData'
+import { fetchSiteData } from './mapData';
 
 // Custom leaflet icon with dynamic resizing
 const createCustomIcon = (isMobile: boolean): L.Icon => {
@@ -19,10 +21,11 @@ return new L.Icon({
   shadowSize: isMobile ? [32, 32] : [41, 41],
 
 });
+
 };
 
 // Define the type for the individual site
-interface Site {
+export interface Site {
   latitude: number;
   longitude: number;
   name: string;
@@ -30,13 +33,15 @@ interface Site {
 }
 
 // Define the props type for the MapComponent
-interface MapComponentProps {
-  sites: Site[];
-}
+// interface MapComponentProps {
+//   sites: Site[];
+// }
 
-const MapComponent: React.FC<MapComponentProps> = ({ sites }) => {
+const MapComponent: React.FC = () => {
     
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+    const [data, setData] = useState<Site[]>([])
+    const [error, setError] = useState<string | null>(null); 
 
     useEffect(() => {
         const handleResize = () => {
@@ -51,8 +56,25 @@ const MapComponent: React.FC<MapComponentProps> = ({ sites }) => {
     }, []); 
 
 
+    useEffect(() => {
+
+      const loadData = async () => {
+          try {
+          const fetchedData = await fetchSiteData(); 
+          console.log("Fetch site data:", fetchedData) //test if fetching
+          setData(fetchedData); //store site data in state 
+
+          } catch (error) {
+              setError("Error loading site data");
+          }
+      }
+
+      loadData(); 
+
+  }, []) //empty dependency to load data on component mount
+
+
     const customIcon = createCustomIcon(isMobile)
-  
     const position: [number, number] = [51.505, -0.09]; // Default position for the map, e.g., London
 
 
@@ -64,7 +86,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ sites }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
       />
-      {sites.map((site, index) => (
+      {data.map((site, index) => (
         <Marker key={index} position={[site.latitude, site.longitude]} icon={customIcon}>
           <Popup>
             <strong>{site.name}</strong><br />
