@@ -8,7 +8,7 @@ import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import HomePage from './pages/HomePage';
 import MapPage from './pages/MapPage'
-import SitePage from './pages/SitePage';
+import SitePage from './pages/SitePage'
 import AdventurePage from './pages/AdventurePage';
 import UserPage from './pages/UserPage';
 
