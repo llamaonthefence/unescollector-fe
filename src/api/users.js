@@ -126,3 +126,50 @@ export async function getUserDetails(userId) {
         throw error; 
     }
 }
+
+
+//handling 'likes' toggle on 'site' tab
+export async function handleLikes(userId, id) {
+    try {
+        const url = `${BASE_URL}/${userId}/likes`;
+
+        const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-type": "aplication/json"}, 
+            body: JSON.stringify({id})
+        })
+
+        if(!res.ok) {
+            throw new Error(`HTTP error. Status: ${res.status}`)
+        }
+
+        const data = await res.json(); 
+        return data.likes; 
+    } catch (error) {
+        console.error(`Error handling likes: ${error.message}`);
+        throw error; 
+    }
+}
+
+//handling 'beenTo' toggle on 'site' tab
+export async function handleBeenTo(userId, id) {
+    try {
+        const url = `${BASE_URL}/${userId}/beenTo`;
+
+        const res = await fetch(url, {
+            method: "POST", 
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify({id})
+        })
+
+        if(!res.ok) {
+            throw new Error(`HTTP error. Status ${res.status}`)
+        }
+
+        const data = await res.json();
+        return data.beenTo; 
+    } catch (error) {
+        console.error(`Error handling beenTo: ${error.message}`);
+        throw error
+    }
+}
