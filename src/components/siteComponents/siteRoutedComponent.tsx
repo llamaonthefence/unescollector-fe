@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom'
 import { Box, Image, Text, Spinner, Flex, IconButton } from '@chakra-ui/react'; 
 import { FaHeart, FaMapMarkerAlt, FaComment } from 'react-icons/fa';
 
+import { handleLikes, handleBeenTo } from '../../api/users'
+import { getUser } from '../../service/users';
+
 interface Site {
     id_number: number; 
     image_url: string; 
@@ -23,8 +26,12 @@ const SiteRoutedComponent: React.FC = () =>  {
     const [siteData, setSiteData] = useState<Site | null>(null); 
     const [error, setError] = useState<string | null>(null); 
     const [loading, setLoading] = useState(true)
-    const [liked, setLiked] = useState(false);
-    const [beenTo, setBeenTo] = useState(false);
+    const [liked, setLiked] = useState<boolean>(false);
+    const [beenTo, setBeenTo] = useState<boolean>(false);
+    const [likedList, setLikedList] = useState<number[]>([]);
+    const [beenToList, setBeenToList] = useState<number[]>([]);  //these lists save site IDs 
+
+    const userId = getUser()?.id //is an object with an 'id' field 
 
     useEffect(() => {
 
@@ -72,6 +79,42 @@ const SiteRoutedComponent: React.FC = () =>  {
         fetchSiteFromId();
     },[id])
 
+
+    //likes & beenTo functions 
+    useEffect(() => {
+        if (siteData) {
+            // Check if site is in liked/beenTo lists
+            setLiked(likedList.includes(siteData.id_number));
+            setBeenTo(beenToList.includes(siteData.id_number));
+        }
+    }, [siteData, likedList, beenToList])
+
+    const onLikedClick = async () => {
+        try {
+            if (!liked) {
+                const updatedLikes = await handleLikes(userId, siteData!.id_number.toString())
+                setLikedList(updatedLikes);
+                setLiked(true); 
+            }
+        } catch(error) {
+            console.error('Error adding to favourites:', error)
+        }
+      } 
+
+    const onBeenToClick = async () => {
+        try {
+            if(!beenTo) {
+                const updateBeenToList = await handleBeenTo(userId, siteData!.id_number.toString());
+                setBeenToList(updateBeenToList);
+                setBeenTo(true)
+            }
+        } catch (error) {
+            console.error('Error adding to beenTo list:', error)
+        }
+    }
+
+
+
     if (loading) {
         if (id) {
           return (
@@ -105,6 +148,7 @@ const SiteRoutedComponent: React.FC = () =>  {
         )
       }
 
+    
     return (
         <Box textAlign="center">
             <Image src={siteData.image_url} alt={siteData.site} width="20%" mx="auto"></Image>
@@ -116,14 +160,14 @@ const SiteRoutedComponent: React.FC = () =>  {
             <IconButton 
             aria-label="Like"
             icon={<FaHeart/>}
-            onClick={ () => setLiked(!liked) }
+            onClick={ onLikedClick }
             colorScheme={liked? 'red' : 'gray'}
             isRound    
             />
             <IconButton
             aria-label="Been to"
             icon={<FaMapMarkerAlt/>}
-            onClick={ () => setBeenTo(!beenTo) }
+            onClick={ onBeenToClick }
             colorScheme={beenTo? 'green' : 'gray'}
             isRound    
             />

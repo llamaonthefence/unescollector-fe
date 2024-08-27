@@ -76,17 +76,17 @@ const SiteRootComponent: React.FC = () => {
         <>
         {/*Root component - search bar to find specific site*/}
         
-        <Box position="relative" minHeight="10vh">
-        <Box>
-        <Input
-            ref={inputRef}
-            type="text"
-            placeholder="Search UNESCO Sites"
-            value={keyword}
-            onChange={(evt) => setKeyword(evt.target.value)}
-            mb={2}
-            />
-        </Box>
+        <Box position="relative" minHeight="10vh" overflow="visible">
+            <Box>
+                <Input
+                ref={inputRef}
+                type="text"
+                placeholder="Search UNESCO Sites"
+                value={keyword}
+                onChange={(evt) => setKeyword(evt.target.value)}
+                mb={2}
+                />
+            </Box>
 
         {/*Root component - filtered sites*/}
 
@@ -100,8 +100,7 @@ const SiteRootComponent: React.FC = () => {
             maxHeight="50vh" 
             overflowY="auto"
             zIndex={1000}
-            bg="white"
-            p={4}
+            backgroundColor="transparent"
             >
             <VStack spacing={4}>
                 {filteredSites.map((site, index) => (
