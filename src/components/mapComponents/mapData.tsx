@@ -6,6 +6,7 @@ interface Site {
     longitude: number;
     site: string;
     short_description: string, 
+    id_number: number
 }
 
 //for the structure of the entire JSON data
@@ -18,7 +19,8 @@ interface TransformedSite {
     latitude: number, 
     longitude: number, 
     name: string, 
-    description: string; 
+    description: string;
+    id_number: number 
 }
 
 //fetch data from 'whc-en.json'
@@ -43,7 +45,8 @@ export const fetchSiteData = async (): Promise<TransformedSite[]> => {
         latitude: site.latitude,
         longitude: site.longitude,
         name: site.site,
-        description: firstSentence, 
+        description: firstSentence,
+        id_number: site.id_number 
     }
     }); 
 

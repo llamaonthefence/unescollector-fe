@@ -50,7 +50,8 @@ function App() {
             {/* <Navbar /> */}
             <Route path="/home" element={<HomePage />}/>
             <Route path="/map" element={<MapPage/>}/>
-            <Route path="/site" element={<SitePage/>}/> 
+            <Route path="/site" element={<SitePage/>}/>
+            <Route path="/site/:id" element={<SitePage/>}/> 
             <Route path="/adventure" element={<AdventurePage/>}/> 
             <Route path="/user" element={<UserPage/>}/> 
             </>)}

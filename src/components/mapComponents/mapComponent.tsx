@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -21,7 +22,6 @@ return new L.Icon({
   shadowSize: isMobile ? [32, 32] : [41, 41],
 
 });
-
 };
 
 // Define the type for the individual site
@@ -30,6 +30,7 @@ export interface Site {
   longitude: number;
   name: string;
   description: string;
+  id_number: number; 
 }
 
 // Define the props type for the MapComponent
@@ -89,7 +90,10 @@ const MapComponent: React.FC = () => {
       {data.map((site, index) => (
         <Marker key={index} position={[site.latitude, site.longitude]} icon={customIcon}>
           <Popup>
+          <Link to={`/site/${site.id_number}`}>
             <strong>{site.name}</strong><br />
+            </Link>
+            <br />
             {site.description}
           </Popup>
         </Marker>
