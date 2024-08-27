@@ -1,7 +1,7 @@
 //this component contains '/site' root components such as search bar
 //for when users click directly on 'site' tab
 //'SiteRoutedComponent' - routed from 'map' tab 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom'; 
 // import SiteRoutedComponent from './siteRoutedComponent';
 import { Box, Input, VStack, Heading, SimpleGrid } from '@chakra-ui/react'
@@ -24,6 +24,8 @@ const SiteRootComponent: React.FC = () => {
     const [regionCount, setRegionCount] = useState<{ [key:string]: number }>({});
     const [jsonData, setJsonData] = useState<JSONData | null>(null);
     // // const [renderRoutedComponent, setRenderRoutedComponent] = useState(false)
+
+    const inputRef = useRef<HTMLInputElement>(null); //Set poisiton of VStack
 
     // //fetch jsonData from public folder - can't conventional import: 
     useEffect(() => {
@@ -73,20 +75,34 @@ const SiteRootComponent: React.FC = () => {
     return (
         <>
         {/*Root component - search bar to find specific site*/}
+        
+        <Box position="relative" minHeight="10vh">
         <Box>
         <Input
+            ref={inputRef}
             type="text"
             placeholder="Search UNESCO Sites"
             value={keyword}
             onChange={(evt) => setKeyword(evt.target.value)}
-            mb={4}
+            mb={2}
             />
         </Box>
 
         {/*Root component - filtered sites*/}
 
         {filteredSites.length > 0 && (
-            <Box maxHeight="50vh" overflowY="auto">
+            <Box
+            position="absolute"
+            top={`${inputRef.current ? inputRef.current.offsetHeight + 8 : 0}px`} 
+            left="0"
+            right="0" 
+            bottom="0"
+            maxHeight="50vh" 
+            overflowY="auto"
+            zIndex={1000}
+            bg="white"
+            p={4}
+            >
             <VStack spacing={4}>
                 {filteredSites.map((site, index) => (
                     <Box key={index} p={4} 
@@ -95,9 +111,11 @@ const SiteRootComponent: React.FC = () => {
                     <Heading fontSize="0.9em">{site.site}</Heading>
                     </Box>
                 ))}
-            </VStack> 
+            </VStack>
+             
             </Box>
         )}
+        </Box>
 
         {/*Root component - cards for UNESCO reigons*/}
         <SimpleGrid>
