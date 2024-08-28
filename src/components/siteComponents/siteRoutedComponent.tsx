@@ -88,7 +88,7 @@ const SiteRoutedComponent: React.FC = () =>  {
         if (siteData) {
             // Check if site is in liked/beenTo lists
             setLiked(likedList.includes(siteData.id_number));
-            setBeenTo(beenToList.includes(siteData.id_number));
+            // setBeenTo(beenToList.includes(siteData.id_number));
         }
     }, [siteData, likedList, beenToList])
 
@@ -114,11 +114,16 @@ const SiteRoutedComponent: React.FC = () =>  {
 
     const onBeenToClick = async () => {
         try {
+           if (userId && siteData) { 
             if(!beenTo) {
                 const updateBeenToList = await handleBeenTo(userId, siteData!.id_number.toString());
                 setBeenToList(updateBeenToList);
                 setBeenTo(true)
-            }
+            } else {
+                const updateBeenToList = await handleBeenTo(userId, siteData!.id_number.toString());
+                setBeenToList(updateBeenToList)
+                setBeenTo(false)
+            }}
         } catch (error) {
             console.error('Error adding to beenTo list:', error)
         }
