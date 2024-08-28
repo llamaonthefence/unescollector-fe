@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { theme } from '@chakra-ui/react'
 
 import SignUpPage from './pages/SignUpPage';
@@ -18,9 +18,9 @@ import { getUser, signOutUser } from './service/users'
 
 
 function App() {
-  // const [user, setUser] = useState(getUser);
+  const [user, setUser] = useState(getUser);
   //dummy user
-  const [user, setUser] = useState({ name: "Dummy User", email: "dummy@example.com" });
+  // const [user, setUser] = useState({ name: "Dummy User", email: "dummy@example.com" });
 
   async function handleSignOut() {
     await signOutUser(); 
@@ -31,6 +31,8 @@ function App() {
   const location = useLocation();
   const isSignUpPage = location.pathname === "/signup";
   const isSignInPage = location.pathname === "/signin"; 
+
+  console.log(user)
 
   return (
     <>
@@ -56,7 +58,7 @@ function App() {
             <Route path="/user" element={<UserPage/>}/> 
             </>)}
 
-            {/* Redirect to signup
+            Redirect to signup
             {!user && (
               <>
               <Route path="/home" element={<Navigate to="/signin"/>} />
@@ -64,7 +66,7 @@ function App() {
               <Route path="/site" element={<Navigate to="/signin"/>} /> 
               <Route path="/adventure" element={<Navigate to="/signin"/>} /> 
               <Route path="/user" element={<Navigate to="/signin"/>} /> 
-              </>)} */}
+              </>)}
 
           </Routes>
         </>

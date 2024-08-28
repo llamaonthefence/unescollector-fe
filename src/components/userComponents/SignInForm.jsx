@@ -5,6 +5,8 @@ import Logo from '../../assets/logo-placeholder.png'
 import { hashDataWithSaltRounds, storeToken } from "../../util/security";
 import { getSignInDetails, signInUser } from "../../service/users";
 
+import './SignInForm.css'
+
 
 function SignInForm() {
     const [email, setEmail] = useState(''); 
@@ -44,13 +46,14 @@ function SignInForm() {
     }
 
     return (
-        <div>
+        <div className="container">
             <Link to="/signup">
             <img src={Logo} alt="Logo" className="logo" />
             </Link>
             <h2>Sign In</h2>
-
+            
             <form onSubmit={handleSubmit}>
+            <div>
                 <label htmlFor="email" className="form-label">Email</label>
                 <input
                 type="email"
@@ -64,7 +67,8 @@ function SignInForm() {
                 />
 
                 {emailError && <div className="error">{emailError}</div>}
-
+            </div>
+            <div>
                 <label htmlFor="password" className="form-label">Password</label>
                 <input
                 type="password"
@@ -78,7 +82,8 @@ function SignInForm() {
                 />
 
                 {passwordError && <div className="error">{passwordError}</div>}
-
+            </div>
+            
             <p>Don&apos;t have an account? {" "}
                 <a href="/signup" style={{ color: "blue" }}>
                 Sign up

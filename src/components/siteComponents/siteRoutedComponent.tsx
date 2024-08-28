@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Box, Image, Text, Spinner, Flex, IconButton } from '@chakra-ui/react'; 
 import { FaHeart, FaMapMarkerAlt, FaComment } from 'react-icons/fa';
 
-import { handleLikes, handleBeenTo } from '../../api/users'
+import { handleLikes, handleBeenTo } from '../../service/users'
 import { getUser } from '../../service/users';
 
 interface Site {
@@ -31,7 +31,8 @@ const SiteRoutedComponent: React.FC = () =>  {
     const [likedList, setLikedList] = useState<number[]>([]);
     const [beenToList, setBeenToList] = useState<number[]>([]);  //these lists save site IDs 
 
-    const userId = getUser()?.id //is an object with an 'id' field 
+    const userId = getUser() //is an object with an 'id' field
+    console.log('userID from siteRoutedComponent:', userId) 
 
     useEffect(() => {
 
@@ -63,6 +64,8 @@ const SiteRoutedComponent: React.FC = () =>  {
             //load site that matches "id_number"
             const site = sitesArray.find((site: Site) => site.id_number === numericId);
             console.log('Site found:', site);
+            console.log('Site ID:', site?.id_number);
+            console.log('SiteData ID:', siteData?.id_number);
 
             if (site) {
                 setSiteData(site);
@@ -91,11 +94,19 @@ const SiteRoutedComponent: React.FC = () =>  {
 
     const onLikedClick = async () => {
         try {
-            if (!liked) {
+          // console.log('userId:', userId);
+          // console.log('siteData:', siteData?.id_number);
+
+           if (userId && siteData) {
+              if (!liked) {
                 const updatedLikes = await handleLikes(userId, siteData!.id_number.toString())
                 setLikedList(updatedLikes);
                 setLiked(true); 
-            }
+            } else {
+              const updatedLikes = await handleLikes(userId, siteData!.id_number.toString())
+              setLikedList(updatedLikes);
+              setLiked(false); 
+            }}
         } catch(error) {
             console.error('Error adding to favourites:', error)
         }
@@ -112,8 +123,6 @@ const SiteRoutedComponent: React.FC = () =>  {
             console.error('Error adding to beenTo list:', error)
         }
     }
-
-
 
     if (loading) {
         if (id) {
@@ -154,7 +163,7 @@ const SiteRoutedComponent: React.FC = () =>  {
             <Image src={siteData.image_url} alt={siteData.site} width="20%" mx="auto"></Image>
             <Text fontSize="xl" fontWeight="bold">{siteData.site}</Text>
             <Text mt={2}>{siteData.states.join(', ')}{siteData.region ? `, ${siteData.region}` : ''}</Text>
-            <Text mt={2}>{siteData.short_description}</Text>
+            <Text mt={2} mb={10}>{siteData.short_description}</Text>
 
         <Flex justifyContent="center" mt={4} gap={4}>
             <IconButton 

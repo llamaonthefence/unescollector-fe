@@ -1,5 +1,5 @@
 import * as usersAPI from "../api/users"; 
-import { getToken, removeToken } from "../util/security";
+import { getToken, removeToken, getUserIdFromToken } from "../util/security";
 
 export async function signUp(userData) {
     console.log("service", userData)
@@ -46,4 +46,23 @@ export async function signOutUser() {
 export async function getUserDetails(userid) {
     const userDetails = await usersAPI.getUserDetails(userid);
     return userDetails; 
+}
+
+//handle likes and beenTo
+export async function handleLikes(userId, siteId) {
+    const user = getUserIdFromToken();
+
+    if (!user) {
+        throw new Error("UserId is missing")
+    }
+
+    if (!siteId) {
+        throw new Error("Site ID is missing")
+    }
+
+    return await usersAPI.handleLikes(userId, siteId);
+}
+
+export async function handleBeenTo(userId, id) {
+    return await usersAPI.handleBeenTo(userId, id); 
 }
