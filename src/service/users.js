@@ -48,12 +48,12 @@ export async function getUserDetails(userid) {
     return userDetails; 
 }
 
-//handle likes and beenTo
+//handle likes
 export async function handleLikes(userId, siteId) {
     const user = getUserIdFromToken();
 
     if (!user) {
-        throw new Error("UserId is missing")
+        throw new Error("User ID is missing")
     }
 
     if (!siteId) {
@@ -63,6 +63,16 @@ export async function handleLikes(userId, siteId) {
     return await usersAPI.handleLikes(userId, siteId);
 }
 
-export async function handleBeenTo(userId, id) {
-    return await usersAPI.handleBeenTo(userId, id); 
+//handle been-to
+export async function handleBeenTo(userId, siteId) {
+    const user = getUserIdFromToken(); 
+
+    if (!user) {
+        throw new Error("User ID is missing")
+    }
+    if(!siteId) {
+        throw new Error("Site ID is missing")
+    }
+
+    return await usersAPI.handleBeenTo(userId, siteId); 
 }

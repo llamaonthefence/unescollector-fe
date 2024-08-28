@@ -138,14 +138,14 @@ export async function handleLikes(userId, siteId) {
         const user = getUserIdFromToken();
 
         const url = `${BASE_URL}/${userId}/likes`;
-        console.log('userId:', userId)
-        console.log('site ID:', siteId)
-        console.log('BASE URL:', BASE_URL)
+        // console.log('userId:', userId)
+        // console.log('site ID:', siteId)
+        // console.log('BASE URL:', BASE_URL)
 
         const res = await fetch(url, {
             method: "POST",
             headers: { "Content-type": "application/json",
-                Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             }, 
             body: JSON.stringify({user_id: user, siteId})
         })
@@ -163,14 +163,20 @@ export async function handleLikes(userId, siteId) {
 }
 
 //handling 'beenTo' toggle on 'site' tab
-export async function handleBeenTo(userId, id) {
+export async function handleBeenTo(userId, siteId) {
     try {
+
+        const token = getToken();
+        const user = getUserIdFromToken();
+
         const url = `${BASE_URL}/${userId}/beenTo`;
 
         const res = await fetch(url, {
             method: "POST", 
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({id})
+            headers: {"Content-type": "application/json",
+            Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({user_id: user, siteId})
         })
 
         if(!res.ok) {
