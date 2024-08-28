@@ -1,4 +1,6 @@
-const BASE_URL = "http://localhost:3000/users"
+import {getToken, getUserIdFromToken} from '../util/security'
+
+const BASE_URL = "http://localhost:3000/user"
 
 export async function signUp(userData) {
     const res = await fetch(BASE_URL + "/signup", {
@@ -129,14 +131,23 @@ export async function getUserDetails(userId) {
 
 
 //handling 'likes' toggle on 'site' tab
-export async function handleLikes(userId, id) {
+export async function handleLikes(userId, siteId) {
     try {
+
+        const token = getToken();
+        const user = getUserIdFromToken();
+
         const url = `${BASE_URL}/${userId}/likes`;
+        console.log('userId:', userId)
+        console.log('site ID:', siteId)
+        console.log('BASE URL:', BASE_URL)
 
         const res = await fetch(url, {
             method: "POST",
-            headers: { "Content-type": "aplication/json"}, 
-            body: JSON.stringify({id})
+            headers: { "Content-type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }, 
+            body: JSON.stringify({user_id: user, siteId})
         })
 
         if(!res.ok) {

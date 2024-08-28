@@ -76,7 +76,7 @@ const SiteRootComponent: React.FC = () => {
         <>
         {/*Root component - search bar to find specific site*/}
         
-        <Box position="relative" minHeight="10vh" overflow="visible">
+        <Box position="relative" minHeight="20vh" overflow="visible">
             <Box>
                 <Input
                 ref={inputRef}
