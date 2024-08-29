@@ -123,6 +123,7 @@ export async function getUserDetails(userId) {
         const data = await res.json() 
         return data; 
 
+
     } catch (error) {
         console.error(`Error fetching user details: ${error.message}`)
         throw error; 
@@ -190,3 +191,49 @@ export async function handleBeenTo(userId, siteId) {
         throw error
     }
 }
+
+export async function getUserLikes (userId) {
+    try {
+        const token = getToken();
+        const url =  `${BASE_URL}/${userId}/likes`;
+        const res = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        if(!res.ok) {
+            throw new Error (`HTTP error. Status ${res.status}`)
+        } 
+        const data = await res.json(); 
+        return data.likes;
+    } catch(error) {
+        console.error(`Error fetching user likes: ${error.message}`)
+        throw error;
+    }
+}
+
+export async function getUserBeenTo (userId) {
+    try {
+        const token = getToken();
+        const url =  `${BASE_URL}/${userId}/beenTo`;
+        const res = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        if(!res.ok) {
+            throw new Error (`HTTP error. Status ${res.status}`)
+        } 
+        const data = await res.json(); 
+        return data.beenTo;
+    } catch(error) {
+        console.error(`Error fetching user likes: ${error.message}`)
+        throw error;
+    }
+}
+
+console.log(getUserBeenTo)
