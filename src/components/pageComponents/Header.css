@@ -1,0 +1,25 @@
+.header-container {
+    position: fixed; /* Stick to the top of the screen */
+    top: 0; /* Align to the top */
+    left: 50%; /* Start at the center horizontally */
+    transform: translateX(-50%);
+    height: 70px;
+    width: 100%; /* Full width */
+    max-width: 550px; /* Ensure it doesn't exceed viewport width */
+    background-color: #0077d5; /* Your header background color */
+    padding: 1rem; /* Adjust padding as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  
+  /* Responsive styles for mobile layout */
+  @media (min-width: 768px) {
+    .header-content {
+      padding: 0 1rem; /* Add horizontal padding on mobile */
+    }
+  }
+  

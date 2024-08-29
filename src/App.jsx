@@ -14,6 +14,7 @@ import UserPage from './pages/UserPage';
 
 import Navbar from './components/pageComponents/NavBar'
 import NoNavBar from './components/pageComponents/NoNavBar'
+import Header from './components/pageComponents/Header'
 import { getUser, signOutUser } from './service/users'
 
 
@@ -39,8 +40,12 @@ function App() {
       <ChakraProvider theme={theme}>
         <main className='App'>
         <>
-        {!isSignInPage && !isSignUpPage && 
-        (user ? <Navbar handleSignOut={handleSignOut} /> : <NoNavBar />)}
+        {!isSignInPage && !isSignUpPage && (
+        <>
+        <Header /> 
+        {user ? <Navbar handleSignOut={handleSignOut} /> : <NoNavBar />}
+        </>)
+        }
           <Routes>
             {/* Non-protected Routes */}
             <Route path="/signup" element={<SignUpPage />}/>

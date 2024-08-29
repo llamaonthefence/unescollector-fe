@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Box, Image, Text, Spinner, Flex, IconButton } from '@chakra-ui/react'; 
 import { FaHeart, FaMapMarkerAlt, FaComment } from 'react-icons/fa';
 
-import { handleLikes, handleBeenTo } from '../../service/users'
+import { handleLikes, handleBeenTo, getUserDetails } from '../../service/users'
 import { getUser } from '../../service/users';
 
 interface Site {
@@ -26,6 +26,7 @@ const SiteRoutedComponent: React.FC = () =>  {
     const [siteData, setSiteData] = useState<Site | null>(null); 
     const [error, setError] = useState<string | null>(null); 
     const [loading, setLoading] = useState(true)
+
     const [liked, setLiked] = useState<boolean>(false);
     const [beenTo, setBeenTo] = useState<boolean>(false);
     const [likedList, setLikedList] = useState<number[]>([]);
@@ -65,7 +66,6 @@ const SiteRoutedComponent: React.FC = () =>  {
             const site = sitesArray.find((site: Site) => site.id_number === numericId);
             console.log('Site found:', site);
             console.log('Site ID:', site?.id_number);
-            console.log('SiteData ID:', siteData?.id_number);
 
             if (site) {
                 setSiteData(site);
@@ -84,21 +84,38 @@ const SiteRoutedComponent: React.FC = () =>  {
 
 
     //likes & beenTo functions 
-    useEffect(() => {
-        if (siteData) {
-            // Check if site is in liked/beenTo lists
-            setLiked(likedList.includes(siteData.id_number));
-            // setBeenTo(beenToList.includes(siteData.id_number));
-        }
-    }, [siteData, likedList, beenToList])
+    // useEffect(() => {
+    //     if (siteData) {
+    //         // Check if site is in liked/beenTo lists
+    //         setLiked(likedList.includes(siteData.id_number));
+    //         // setBeenTo(beenToList.includes(siteData.id_number));
+    //     }
+    // }, [siteData, likedList, beenToList])
 
     const onLikedClick = async () => {
         try {
           // console.log('userId:', userId);
           // console.log('siteData:', siteData?.id_number);
 
-           if (userId && siteData) {
-              if (!liked) {
+        if (userId && siteData) {
+
+          const fetchUserData = async() => {
+            try {
+              const userData = await getUserDetails(userId)
+              
+              // const isLiked = userData.likes.includes(siteData.id_number)
+              // const isBeenTo = userData.beenTo.includes(siteData.id_number)
+              console.log('This is userData:', userData)
+              
+
+              // setLiked(isLiked);
+              // setBeenTo(isBeenTo);
+            } catch (error) {
+              console.error('Error fetching user data:', error); 
+            }}
+            fetchUserData();
+
+            if (!liked) {
                 const updatedLikes = await handleLikes(userId, siteData!.id_number.toString())
                 setLikedList(updatedLikes);
                 setLiked(true); 
