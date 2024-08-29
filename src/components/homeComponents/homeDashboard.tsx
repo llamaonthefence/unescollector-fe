@@ -4,7 +4,7 @@ import React from 'react';
 const HomeDashboard: React.FC = () => {
 
     return(
-        <Container maxW="100%" p={4} mt="20px">
+        <Container maxW="100%" p={4} mt="30px">
             <Box
             bg="gray.100"
             p={4}
