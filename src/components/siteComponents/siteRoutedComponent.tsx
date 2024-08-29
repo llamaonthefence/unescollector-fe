@@ -106,7 +106,7 @@ const SiteRoutedComponent: React.FC = () =>  {
               // const isLiked = userData.likes.includes(siteData.id_number)
               // const isBeenTo = userData.beenTo.includes(siteData.id_number)
               console.log('This is userData:', userData)
-              
+              // console.log('This is user likes:', userLikes)
 
               // setLiked(isLiked);
               // setBeenTo(isBeenTo);
