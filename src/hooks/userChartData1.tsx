@@ -1,7 +1,7 @@
 //continents 
 
 import React, { useEffect, useState } from 'react'; 
-import { Box } from '@chakra-ui/react'; 
+// import { Box } from '@chakra-ui/react'; 
 import { getUser, getUserBeenTo } from '../service/users';
 import DonutChart from '../components/progressComponents/donutChart';
 import { ApexOptions } from 'apexcharts';
@@ -71,7 +71,7 @@ const ChartContinent: React.FC = () => {
 
             const uniqueRegions = Array.from(new Set(matchedRegions))
             return uniqueRegions; 
-            
+
         } catch (error: any) {
             console.error(`Error fetching unique regions: ${error.message}`);
             throw error;
