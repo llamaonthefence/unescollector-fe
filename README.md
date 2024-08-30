@@ -14,7 +14,8 @@ A mini mobile app to access UNESCO World Heritage Sites on the map and to track 
 * React JS 
 * MongoDB
 * Mongoose
-* ChakraUI 
+* ChakraUI
+* Leaflet Map 
 * ApexCharts
 * xml2js 
 
