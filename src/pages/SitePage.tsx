@@ -10,9 +10,17 @@ const SitePage: React.FC = () => {
 
     return (
         <>
+        <div
+        style={{ 
+            marginTop: '-20px',
+            paddingTop: '0px'
+        }}
+        >
         <SiteRootComponent />
+        </div>
         {id && <SiteRoutedComponent />} 
         <Outlet /> 
+        
         </>
     )
 }; 
