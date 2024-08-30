@@ -50,11 +50,20 @@ function SignInForm() {
             <Link to="/signup">
             <img src={Logo} alt="Logo" className="logo" />
             </Link>
-            <h2>Sign In</h2>
+            <h2 style={{ 
+                fontSize: '2rem', 
+                fontWeight: 'bold', 
+                marginBottom: '2rem', 
+                textAlign: 'center' }}
+                >Sign In</h2>
             
             <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email" className="form-label">Email</label>
+            <div style={{ marginBottom: '1.5rem' }}>
+                <label 
+                htmlFor="email" 
+                className="form-label" 
+                style={{ display: 'block', marginBottom: '0.5rem' }}
+                >Email</label>
                 <input
                 type="email"
                 id="email"
@@ -64,12 +73,20 @@ function SignInForm() {
                 setEmail(e.target.value);
                 setEmailError("");
                 }}
+                style={{ width: '100%', padding: '0.5rem', boxSizing: 'border-box' }}
                 />
 
-                {emailError && <div className="error">{emailError}</div>}
+                {emailError && 
+                <div className="error"
+                style={{ color: 'red', marginTop: '0.25rem' }}
+                >{emailError}</div>}
             </div>
-            <div>
-                <label htmlFor="password" className="form-label">Password</label>
+            <div style={{ marginBottom: '1.5rem' }}>
+                <label 
+                htmlFor="password" 
+                className="form-label"
+                style={{ display: 'block', marginBottom: '0.5rem' }}
+                >Password</label>
                 <input
                 type="password"
                 id="password"
@@ -79,9 +96,13 @@ function SignInForm() {
                     setPassword(e.target.value);
                     setPasswordError("");
                 }}
+                style={{ width: '100%', padding: '0.5rem', boxSizing: 'border-box' }}
                 />
 
-                {passwordError && <div className="error">{passwordError}</div>}
+                {passwordError && 
+                <div className="error"
+                style={{ color: 'red', marginTop: '0.25rem' }}
+                >{passwordError}</div>}
             </div>
             
             <p>Don&apos;t have an account? {" "}
@@ -90,7 +111,7 @@ function SignInForm() {
                 </a>
             </p>
 
-            <button type="submit">Continue</button>
+            <button type="submit" style={{ marginTop: '1rem' }}>Continue</button>
 
             </form>
         </div>

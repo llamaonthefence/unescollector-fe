@@ -5,7 +5,7 @@
     transform: translateX(-50%);
     height: 70px;
     width: 100%; /* Full width */
-    max-width: 550px; /* Ensure it doesn't exceed viewport width */
+    max-width: 600px; /* Ensure it doesn't exceed viewport width */
     background-color: #0077d5; /* Your header background color */
     padding: 1rem; /* Adjust padding as needed */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */

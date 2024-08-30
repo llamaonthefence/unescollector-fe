@@ -10,7 +10,7 @@ function HomePage() {
     return(
         <>
         {/*home-image*/}
-        <Box>
+        <Box maxHeight="100vh">
             <Box>
                 <Image 
                 src={homeImage}
@@ -54,6 +54,7 @@ function HomePage() {
             left="50%"
             transform="translate(-50%, -50%)"
             textAlign="center"
+            maxHeight="100vh"
         >
             
             <Text

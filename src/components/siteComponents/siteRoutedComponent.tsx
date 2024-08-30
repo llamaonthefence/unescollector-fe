@@ -184,7 +184,7 @@ const SiteRoutedComponent: React.FC = () =>  {
 
     
     return (
-        <Box textAlign="center">
+        <Box textAlign="center" height="50vh">
 
           <SiteLoaded siteData={siteData}/> 
             {/* <Image src={siteData.image_url} alt={siteData.site} width="20%" mx="auto"></Image>

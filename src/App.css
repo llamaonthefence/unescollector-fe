@@ -5,12 +5,14 @@
   padding: 1rem;
   text-align: center;
   max-height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  background-color: #F0F8FF;
 }
 
 .container {
   width: 90%; /* instead of a fixed width */
   padding: 0.5rem; /* instead of fixed padding */
+  max-height: 100vh;
   box-sizing: border-box;
 }
 
