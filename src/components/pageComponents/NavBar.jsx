@@ -53,7 +53,7 @@ return(
     </Box>
   </Link>
 
-  <Link to='/record'>
+  <Link to='/adventure'>
     <Box className="navbar-item">
         <IconButton
           icon={<Image src={recordIcon} boxSize="24px" />}
