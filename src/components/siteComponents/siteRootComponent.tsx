@@ -78,7 +78,7 @@ const SiteRootComponent: React.FC = () => {
         <>
         {/*Root component - search bar to find specific site*/}
         
-        <Box position="relative" minHeight="20vh" overflow="visible" >
+        <Box position="relative" minHeight="33vh" overflow="visible" >
             <Box>
                 <Input
                 ref={inputRef}
@@ -95,10 +95,10 @@ const SiteRootComponent: React.FC = () => {
         {filteredSites.length > 0 && (
             <Box
             position="absolute"
-            top={`${inputRef.current ? inputRef.current.offsetHeight + 4 : 0}px`} 
+            top={`${inputRef.current ? inputRef.current.offsetHeight + 10 : 0}px`} 
             left="0"
             right="0" 
-            bottom="0"
+            bottom="10"
             maxHeight="50vh" 
             overflowY="auto"
             zIndex={1000}
