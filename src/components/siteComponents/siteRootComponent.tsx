@@ -7,13 +7,15 @@ import { useParams } from 'react-router-dom';
 import { Box, Input, VStack, Heading, SimpleGrid } from '@chakra-ui/react'
 import RegionCard from '../siteComponents/RegionCard'
 import { RegionImgs, RegionName } from '../siteComponents/RegionCard'
+import SiteLoaded from './siteLoadedComponent';
 
 interface Site {
-    region: string; 
-    site: string; 
-    states: string; 
-    short_description: string; 
     id_number: number; 
+    image_url: string; 
+    site: string; 
+    states: string[];
+    region: string; 
+    short_description: string; 
 }
 
 interface JSONData {
@@ -30,6 +32,7 @@ const SiteRootComponent: React.FC = () => {
     const [selectedSite, setSelectedSite] = useState<Site | null>(null); 
 
     const inputRef = useRef<HTMLInputElement>(null); //Set poisiton of VStack
+    
 
     // //fetch jsonData from public folder - can't conventional import: 
     useEffect(() => {
@@ -53,7 +56,12 @@ const SiteRootComponent: React.FC = () => {
 
 
     const handleSiteClick = (site: Site) => {
-        setSelectedSite(site)
+        const siteStatesWithArray = {
+            ...site,
+            states: typeof site.states === 'string' ? [site.states]: site.states
+        }
+
+        setSelectedSite(siteStatesWithArray)
     }
     
     return (
@@ -105,6 +113,8 @@ const SiteRootComponent: React.FC = () => {
         </Box>
         )}
     </Box>
+
+        {selectedSite && <SiteLoaded siteData={selectedSite}/>}
 
         {/*Root component - cards for UNESCO reigons*/}
         <SimpleGrid>
