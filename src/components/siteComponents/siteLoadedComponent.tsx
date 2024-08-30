@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Box, Image, Text, Flex, IconButton} from '@chakra-ui/react';
 import { FaHeart, FaMapMarkerAlt, FaComment } from 'react-icons/fa';
-import { handleLikes, handleBeenTo, getUserDetails, getUser } from '../../service/users';
+import { handleLikes, handleBeenTo, getUserDetails, getUser, getUserLikes, getUserBeenTo } from '../../service/users';
 
 
 interface Site {
@@ -26,17 +26,49 @@ const SiteLoaded: React.FC<SiteLoadedProps> = ({siteData}) => {
     const userId = getUser() //is an object with an 'id' field
     console.log('userID from siteRoutedComponent:', userId)
 
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+    //         try {
+    //             const userData = await getUserDetails(userId);
+    //             setLiked(userData.likes.includes(siteData.id_number));
+    //             setBeenTo(userData.beenTo.includes(siteData.id_number));
+    //         } catch (error) {
+    //             console.error('Error fetching user data:', error);
+    //         }
+    //     };
+    //     fetchUserData();
+    // }, [siteData, userId]);
+
+    //used new functions to call "likes" & "beenTo" APIs! (: - no more 'fetch' error.
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const userData = await getUserDetails(userId);
-                setLiked(userData.likes.includes(siteData.id_number));
-                setBeenTo(userData.beenTo.includes(siteData.id_number));
+                const userLikes = await getUserLikes(userId);
+                const userBeenTo = await getUserBeenTo(userId);
+
+                if (Array.isArray(userLikes)) {
+                    // Check if any element in siteData.id_number is in userLikes
+                    setLiked(userLikes.includes(siteData.id_number));
+                } else {
+                    console.error('User likes data is not an array:', userLikes);
+                }
+
+                if (Array.isArray(userBeenTo)) {
+                    // Check if any element in siteData.id_number is in userBeenTo
+                    setBeenTo(userBeenTo.includes(siteData.id_number));
+                } else {
+                    console.error('User been-to data is not an array:', userBeenTo);
+                }
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         };
-        fetchUserData();
+
+        if (userId) {
+            fetchUserData();
+        } else {
+            console.error('User ID is missing');
+        }
     }, [siteData, userId]);
 
     // const onLikedClick = async () => {
