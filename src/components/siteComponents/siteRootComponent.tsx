@@ -78,7 +78,7 @@ const SiteRootComponent: React.FC = () => {
         <>
         {/*Root component - search bar to find specific site*/}
         
-        <Box position="relative" minHeight="20vh" overflow="visible" mt="70px">
+        <Box position="relative" minHeight="20vh" overflow="visible" >
             <Box>
                 <Input
                 ref={inputRef}
@@ -95,7 +95,7 @@ const SiteRootComponent: React.FC = () => {
         {filteredSites.length > 0 && (
             <Box
             position="absolute"
-            top={`${inputRef.current ? inputRef.current.offsetHeight + 8 : 0}px`} 
+            top={`${inputRef.current ? inputRef.current.offsetHeight + 4 : 0}px`} 
             left="0"
             right="0" 
             bottom="0"
@@ -128,7 +128,7 @@ const SiteRootComponent: React.FC = () => {
         {/* {selectedSite && <SiteLoaded siteData={selectedSite}/>} */}
 
         {/*Root component - cards for UNESCO reigons*/}
-        <SimpleGrid>
+        {/* <SimpleGrid>
             {Object.keys(regionCount).map((region) => (
                 <RegionCard 
                 key={region}
@@ -138,7 +138,7 @@ const SiteRootComponent: React.FC = () => {
                 /> 
             ))}
 
-        </SimpleGrid>
+        </SimpleGrid> */}
 
         {/*Conditional render - Routed from 'Map' tab*/}
          {/* {renderRoutedComponent && <SiteRoutedComponent/>}  */}

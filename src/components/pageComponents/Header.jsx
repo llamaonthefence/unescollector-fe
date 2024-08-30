@@ -15,7 +15,7 @@ function Header() {
         if (pathname.startsWith('/home')) return 'Home';
         if (pathname.startsWith('/map')) return 'Map';
         if (pathname.startsWith('/site')) return 'Site';
-        if (pathname.startsWith('/record')) return 'Adventure';
+        if (pathname.startsWith('/adventures')) return 'Adventure';
         if (pathname.startsWith('/user')) return 'User';
         return '';
         };
