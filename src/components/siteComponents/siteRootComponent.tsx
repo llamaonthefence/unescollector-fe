@@ -2,7 +2,7 @@
 //for when users click directly on 'site' tab
 //'SiteRoutedComponent' - routed from 'map' tab 
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom'; 
+import { useNavigate, useParams } from 'react-router-dom'; 
 // import SiteRoutedComponent from './siteRoutedComponent';
 import { Box, Input, VStack, Heading, SimpleGrid } from '@chakra-ui/react'
 import RegionCard from '../siteComponents/RegionCard'
@@ -23,7 +23,7 @@ interface JSONData {
 }
 
 const SiteRootComponent: React.FC = () => {
-    // const { id } = useParams<{id:string}>();
+    const { id } = useParams<{id:string}>();
     const [keyword, setKeyword] = useState('');
     const [filteredSites, setFilteredSites] = useState<Site[]>([]); 
     const [regionCount, setRegionCount] = useState<{ [key:string]: number }>({});
@@ -32,7 +32,7 @@ const SiteRootComponent: React.FC = () => {
     const [selectedSite, setSelectedSite] = useState<Site | null>(null); 
 
     const inputRef = useRef<HTMLInputElement>(null); //Set poisiton of VStack
-    
+    const navigate = useNavigate() // URL navigation to update with latest user's action
 
     // //fetch jsonData from public folder - can't conventional import: 
     useEffect(() => {
@@ -54,6 +54,15 @@ const SiteRootComponent: React.FC = () => {
         }
     }, [keyword, jsonData]); 
 
+    // Select site based on URL param
+    useEffect(() => {
+        if (id && jsonData) {
+            const foundSite = jsonData.sites.find(site => site.id_number.toString() === id);
+            if (foundSite) {
+                setSelectedSite(foundSite);
+            }
+        }
+    }, [id, jsonData]);
 
     const handleSiteClick = (site: Site) => {
         const siteStatesWithArray = {
@@ -62,6 +71,7 @@ const SiteRootComponent: React.FC = () => {
         }
 
         setSelectedSite(siteStatesWithArray)
+        navigate(`/site/${site.id_number}`);
     }
     
     return (
@@ -114,7 +124,8 @@ const SiteRootComponent: React.FC = () => {
         )}
     </Box>
 
-        {selectedSite && <SiteLoaded siteData={selectedSite}/>}
+        {/* {selectedSite && <SiteLoaded siteData={selectedSite}/>} */}
+        {/* {selectedSite && <SiteLoaded siteData={selectedSite}/>} */}
 
         {/*Root component - cards for UNESCO reigons*/}
         <SimpleGrid>

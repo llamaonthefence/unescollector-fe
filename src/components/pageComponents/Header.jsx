@@ -1,6 +1,6 @@
-import { Box, Flex, IconButton, Text } from '@chakra-ui/react' 
-import Logo from '../../assets/logo-placeholder.png'
-import {HamburgerIcon} from '@chakra-ui/icons'; 
+import { Box, Flex, Text } from '@chakra-ui/react' 
+import Logo from '../../assets/logo.png'
+// import {HamburgerIcon} from '@chakra-ui/icons'; 
 import { useLocation } from 'react-router-dom';
 
 import './Header.css'; 
@@ -24,14 +24,14 @@ function Header() {
 
     return (
         <Box className="header-container" >
-            <Flex justifyContent="space-between" alignItems="center">
+            <Flex justifyContent="start" alignItems="left">
                 
                 <Flex>
                     <Box as="img" src={Logo} alt="UNESCOllector Logo" boxSize="40px" mr={3}/>
                     <Text fontSize="xl" fontWeight="bold" color="white">{title}</Text>
                 </Flex>
 
-                    <IconButton 
+                    {/* <IconButton 
                     aria-label="menu" 
                     icon={<HamburgerIcon/>}
                     ml="10"
@@ -39,7 +39,7 @@ function Header() {
                     variant="outline"
                     colorScheme='whiteAlpha'
                     borderRadius="md"
-                    /> 
+                    />  */}
 
 
             </Flex>
