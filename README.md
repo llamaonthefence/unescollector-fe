@@ -10,10 +10,10 @@ A mini mobile app to access UNESCO World Heritage Sites on the map and to track 
 
 ***
 ## Technologies Used
-* Javascript
+* Javascript + Typescript
 * React JS 
-* MongoDB
-* Mongoose
+* MongoDB + Mongoose + Express
+* CryptoJS
 * ChakraUI
 * Leaflet Map 
 * ApexCharts
