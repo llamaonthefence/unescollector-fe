@@ -146,21 +146,21 @@ const SiteRoutedComponent: React.FC = () =>  {
     //     }
     //   } 
 
-    ```
+```
 
-    ***
-    ## Things I Learned
+***
+## Things I Learned
     * Planning seems to fall short - more detailed plan needed
     * Fulfil the requirements first. Don't be too engrossed in the minute details
     * Never stop learning and be exposed to new libraries and frameworks
 
-    ***
-    ## Next Steps
+***
+## Next Steps
     * Too large dataset needs to be in backend for use with other models. E.g. 'Site' ID needs to be the key identifier for e.g. 'comments' model. Right now data exists only on frontend. 
     * Improve UI and design
 
-    ***
-    ## Attributions
+***
+## Attributions
     * [UNESCO - for making live data available FOC](https://whc.unesco.org/en/syndication)
     * [ChakraUI](https://v2.chakra-ui.com/getting-started)
     * [LeafletMap](https://leafletjs.com/)
