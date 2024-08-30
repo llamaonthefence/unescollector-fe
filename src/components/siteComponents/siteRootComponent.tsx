@@ -11,6 +11,9 @@ import { RegionImgs, RegionName } from '../siteComponents/RegionCard'
 interface Site {
     region: string; 
     site: string; 
+    states: string; 
+    short_description: string; 
+    id_number: number; 
 }
 
 interface JSONData {
@@ -24,6 +27,7 @@ const SiteRootComponent: React.FC = () => {
     const [regionCount, setRegionCount] = useState<{ [key:string]: number }>({});
     const [jsonData, setJsonData] = useState<JSONData | null>(null);
     // // const [renderRoutedComponent, setRenderRoutedComponent] = useState(false)
+    const [selectedSite, setSelectedSite] = useState<Site | null>(null); 
 
     const inputRef = useRef<HTMLInputElement>(null); //Set poisiton of VStack
 
@@ -35,25 +39,6 @@ const SiteRootComponent: React.FC = () => {
         .catch((error) => console.error('Error fetching JSON:', error))
     },[])
 
-    // // if (!jsonData) {
-    // //     return (
-    // //         <div>
-    // //             Loading... 
-    // //         </div>
-    // //     )}
-
-    // //updating state of regionCount 
-    // useEffect(() => {
-
-    //    if (jsonData) {
-    //     const regionMap: { [key:string]: number } = {};
-    //     jsonData.sites.forEach((site: Site) => {
-    //         regionMap[site.region] = (regionMap[site.region] || 0) +1
-    //     })
-    //     setRegionCount(regionMap); //state is updated
-    //     }  
-    // }, [jsonData]) //use jsonData as dependency array
-
     //render searchbar with results based on keywords
     useEffect(() => {
         if(jsonData && keyword) {
@@ -64,14 +49,13 @@ const SiteRootComponent: React.FC = () => {
         } else {
             setFilteredSites([])
         }
-    }, [keyword]); 
+    }, [keyword, jsonData]); 
+
+
+    const handleSiteClick = (site: Site) => {
+        setSelectedSite(site)
+    }
     
-    //routed component
-    // useEffect(()=> {
-    //     setRenderRoutedComponent(!!id)
-    // }, [id])
-
-
     return (
         <>
         {/*Root component - search bar to find specific site*/}
@@ -104,17 +88,23 @@ const SiteRootComponent: React.FC = () => {
             >
             <VStack spacing={4}>
                 {filteredSites.map((site, index) => (
-                    <Box key={index} p={4} 
-                    borderWidth={1} borderRadius="md"
-                    width="50%">
+                    <Box 
+                    key={index} 
+                    p={4} 
+                    borderWidth={1} 
+                    borderRadius="md"
+                    width="80%"
+                    cursor="pointer"
+                    onClick={()=> handleSiteClick(site)}>
+                    
                     <Heading fontSize="0.9em">{site.site}</Heading>
                     </Box>
                 ))}
             </VStack>
              
-            </Box>
-        )}
         </Box>
+        )}
+    </Box>
 
         {/*Root component - cards for UNESCO reigons*/}
         <SimpleGrid>
