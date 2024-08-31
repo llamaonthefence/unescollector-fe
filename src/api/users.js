@@ -231,9 +231,31 @@ export async function getUserBeenTo (userId) {
         const data = await res.json(); 
         return data.beenTo;
     } catch(error) {
-        console.error(`Error fetching user likes: ${error.message}`)
+        console.error(`Error fetching user beenTo: ${error.message}`)
         throw error;
     }
 }
 
-console.log(getUserBeenTo)
+// console.log(getUserBeenTo)
+
+export async function getUserAdminStatus (userId) {
+    try {
+        const token = getToken();
+        const url =  `${BASE_URL}/${userId}/is_admin`;
+        const res = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        })
+        if(!res.ok) {
+            throw new Error (`HTTP error. Status ${res.status}`)
+        } 
+        const data = await res.json(); 
+        return data.is_admin;
+    } catch(error) {
+        console.error(`Error fetching user admin status: ${error.message}`)
+        throw error;
+    }
+}

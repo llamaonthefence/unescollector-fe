@@ -35,7 +35,7 @@ import {
                                 <Input placeholder='Give it a name!'/>
                             </FormControl>
 
-                            <FormControl>
+                            {/* <FormControl>
                                 <FormLabel>Site</FormLabel>
                                 <Box>
                                 <Input />
@@ -51,7 +51,7 @@ import {
                                             </MenuList>
                                     </Menu>)}
                                 </Box> 
-                            </FormControl>
+                            </FormControl> */}
                         
                             <FormControl>
                                 <FormLabel>Adventure Description</FormLabel>
@@ -70,3 +70,5 @@ import {
         </Modal>
     )
   }
+
+  export default AdventureForm; 

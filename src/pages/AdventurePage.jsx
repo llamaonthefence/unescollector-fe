@@ -1,13 +1,12 @@
-import React from "react";
+import AddAdventure from "../components/adventureComponents/addAdventure";
+
 
 
 function AdventurePage() {
 
     return (
         <>
-        <AdventurePage /> 
-
-
+        <AddAdventure /> 
         </>
     )
 

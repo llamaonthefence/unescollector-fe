@@ -98,3 +98,14 @@ export async function getUserBeenTo(userId) {
 
     return await usersAPI.getUserBeenTo(userId); 
 }
+
+//get user admin status 
+export async function getUserAdminStatus(userId) {
+    const user = getUserIdFromToken(); 
+
+    if (!user) {
+        throw new Error("User ID is missing")
+    }
+
+    return await usersAPI.getUserAdminStatus(userId); 
+}
