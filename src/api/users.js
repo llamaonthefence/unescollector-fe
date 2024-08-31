@@ -87,7 +87,7 @@ export async function checkPermission(token) {
         console.log(res)
         return res.json()
     } else {
-        throw new Error("Invalid sign in")
+        throw new Error("Invalid Permission")
     }
 }
 
